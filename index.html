@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Heaven Of Games</title>
+<style>
+body { font-family: Arial; text-align: center; margin-top: 100px; background: #111; color: #fff; }
+input { padding: 10px; width: 300px; }
+button { padding: 10px 20px; margin-top: 10px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>🔥 Heaven Of Games</h1>
+<p>Merci pour la vérification !<br>Écris le nom du jeu que tu veux télécharger :</p>
+<input type="text" id="gameName" placeholder="Nom du jeu">
+<br>
+<button onclick="sendGame()">Envoyer</button>
+
+<script>
+function sendGame() {
+  const game = document.getElementById('gameName').value;
+  if(game==""){ alert("Veuillez entrer le nom du jeu !"); return; }
+  
+  // رابط سكريبت PHP / API (رح نعمله فالمرحلة 3)
+  fetch('send.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ game: game })
+  })
+  .then(res => res.text())
+  .then(data => alert("Votre demande a été envoyée avec succès !"))
+  .catch(err => alert("Erreur, réessayez !"));
+}
+</script>
+</body>
+</html>
